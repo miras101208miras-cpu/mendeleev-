@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>3D Periodic Table of Elements</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for crisp typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Dynamic 2D/WebGL Starfield Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Three.js CSS3D Scene Container -->
+    <div id="container"></div>
+
+    <!-- Top Navigation Menu -->
+    <header id="top-bar">
+        <nav class="menu" role="tablist">
+            <button id="table-btn" class="active" role="tab" aria-selected="true">table</button>
+            <button id="sphere-btn" role="tab" aria-selected="false">sphere</button>
+            <button id="helix-btn" role="tab" aria-selected="false">helix</button>
+            <button id="grid-btn" role="tab" aria-selected="false">grid</button>
+            <button id="secret-btn" role="tab" aria-selected="false">✨ secret</button>
+        </nav>
+        <div id="secret-banner">💖 S A R A 💖</div>
+    </header>
+
+    <!-- Bottom Controls & Search -->
+    <footer id="bottom-bar">
+        <div class="search-box">
+            <span>🔍</span>
+            <input type="text" id="element-search" placeholder="Поиск (H, Fe, Золото...)" autocomplete="off">
+        </div>
+        <button id="sound-btn" class="ctrl-btn" title="Включить/выключить звук" aria-label="Toggle sound">🔊</button>
+        <button id="reset-cam-btn" class="ctrl-btn" title="Сбросить камеру" aria-label="Reset camera">🎯</button>
+    </footer>
+
+    <!-- Element Detail Modal Dialog -->
+    <dialog id="element-dialog" aria-labelledby="dialog-element-title">
+        <div class="dialog-content">
+            <button class="dialog-close" id="dialog-close-btn" aria-label="Close dialog">✕</button>
+            <div class="dialog-header">
+                <div class="dialog-badge" id="dialog-badge">
+                    <span class="badge-num" id="dialog-num">1</span>
+                    <span class="badge-sym" id="dialog-sym">H</span>
+                </div>
+                <div class="dialog-titles">
+                    <h2 id="dialog-element-title">Водород</h2>
+                    <div class="en-name" id="dialog-en-name">Hydrogen</div>
+                    <span class="dialog-category-tag" id="dialog-cat">Неметалл</span>
+                </div>
+            </div>
+
+            <div class="dialog-grid">
+                <div class="dialog-grid-item">
+                    <span>Атомная масса</span>
+                    <strong id="dialog-mass">1.008 а.е.м.</strong>
+                </div>
+                <div class="dialog-grid-item">
+                    <span>Номер в таблице</span>
+                    <strong id="dialog-position">Период 1, Группа 1</strong>
+                </div>
+            </div>
+
+            <div class="dialog-desc" id="dialog-desc">
+                Самый легкий и распространенный элемент во Вселенной.
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Scripts (Loaded locally for instant offline performance) -->
+    <script src="libs/three.min.js"></script>
+    <script src="libs/tween.umd.js"></script>
+    <script src="libs/CSS3DRenderer.js"></script>
+    <script src="libs/TrackballControls.js"></script>
+    <script src="elements-data.js"></script>
+    <script src="audio.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
